@@ -1,0 +1,14 @@
+{:deps     {:aliases [:dev]}
+ ;:dependencies [[refactor-nrepl "2.5.0"]
+                ;[cider/cider-nrepl "0.25.5"]
+                ;[iced-nrepl "1.1.1"]]
+
+ :dev-http {8000 "classpath:public"}
+ :nrepl {:port 9000}
+ :builds   {:main {:target     :browser
+                   :output-dir "resources/public/js/main"
+                   :asset-path "/js/main"
+                   :modules    {:main {:init-fn app.client/init
+                                       :entries [app.client]}}
+                   :devtools   {:after-load app.client/refresh
+                                :preloads   [com.fulcrologic.fulcro.inspect.preload]}}}}
